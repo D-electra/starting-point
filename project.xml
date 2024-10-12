@@ -1,0 +1,85 @@
+<project>
+
+	<!-- _________________________ Application Settings _________________________ -->
+
+	<!-- Application customizations -->
+	<app
+		title="Starting point"
+		file="StartingPoint"
+		version="0.0.1"
+		company="D-electra"
+	/>
+
+	<app main="Boot" preloader="Preloader"/>
+
+	<!-- ____________________________ Window Settings ___________________________ -->
+
+	<!-- Window customizations -->
+	<window
+		width="1280"
+		height="720"
+		background="#000000"
+		hardware="true"
+		vsync="true"
+		resizable="true"
+		fullscreen="false"
+	/>
+
+	<window if="desktop"
+		orientation="landscape"
+	/>
+
+	<window if="mobile"
+		orientation="landscape"
+		fullscreen="true"
+		width="0"
+		height="0"
+	/>
+
+	<!-- _____________________________ Path Settings ____________________________ -->
+
+	<set if="debug"
+		name="BUILD_DIR"
+		value="export/debug"
+	/>
+
+	<set if="release"
+		name="BUILD_DIR"
+		value="export/release"
+	/>
+
+	<set if="32bits"
+		name="BUILD_DIR"
+		value="export/32bits"
+	/>
+
+	<source path="source"/>
+	<assets path="assets"/>
+
+	<!-- _______________________________ Libraries ______________________________ -->
+
+	<haxelib name="flixel"/>
+	<haxelib name="flixel-addons"/>
+	<haxelib name="nutlib"/>
+
+	<!-- ______________________________ Haxedefines _____________________________ -->
+
+	<!-- Remove the legacy health system -->
+	<haxedef name="FLX_NO_HEALTH"/>
+
+	<!-- Remove Flixel focus lost screen -->
+	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN"/>
+
+	<!-- Optimise inputs, be careful you will get null errors if you don't use conditionals in your game -->
+	<haxedef name="FLX_NO_MOUSE" if="mobile"/>
+	<haxedef name="FLX_NO_KEYBOARD" if="mobile"/>
+	<haxedef name="FLX_NO_TOUCH" if="desktop"/>
+
+	<!-- Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode! -->
+	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
+
+	<!-- _________________________________ Custom _______________________________ -->
+
+	<!-- Place custom nodes like icons here -->
+
+</project>
